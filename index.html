@@ -13,8 +13,14 @@
   <body>
     <header class="primary-header">
       <div class="container">
+        <div class="nav-wrapper">
         <a href="#"><img src="images/logo.svg" alt="Manage"></a>
-        <nav class="primary-navigation">
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+          <img class="icon-hamburger" src="images/icon-hamburger.svg" alt="" aria-hidden="true">
+          <img class="icon-close" src="images/icon-close.svg" alt="" aria-hidden="true">
+          <span class="visually-hidden">Menu</span>
+        </button>
+        <nav class="primary-navigation" id="primary-navigation">
           <ul aria-label="primary" role="list" class="nav-list">
             <li><a href="#">Pricings</a></li>
             <li><a href="#">Product</a></li>
@@ -23,7 +29,8 @@
             <li><a href="#">Community</a></li>
           </ul>
         </nav>
-        <button class="button">Get Started</button>
+        <button class="button | display-sm-none | display-md-inline-flex">Get Started</button>
+      </div>
       </div>
     </header>
 
@@ -31,16 +38,15 @@
        <section class="padding-block-900">
         <div class="container">
           <div class="even-columns">
-            <div>
+            <div class="flow">
               <h1 class="fs-primary-heading fw-bold ">Bring everyone together to build better products.</h1>
-              <p>Manage makes it simple for software teams to plan day-to-day tasks while keeping the larger team oals in view.</p>
+              <p>Manage makes it simple for software teams to plan day-to-day tasks while keeping the larger team goals in view.</p>
               <button class="button">Get Started</button>
             </div>
             <div>
               <img src="/images/illustration-intro.svg" alt="">
             </div>
           </div>
-        </div>
       </section>
        <section class="padding-block-900">
         <div class="container">
@@ -50,13 +56,23 @@
               <p>Manage provides all the functionality your team needs, without the complexity. Our software is tailor-made for modern digital product teams.</p>
             </div>
             <div>
-              <ul role="list">
-                <li><h3 class="fs-600 fw-bold">Track company-wide progress</h3>
-                <p>See how your day-to-day tasks fit into the water vision. Go from tracking progress at the milestone level all the way done to the smallest of details. Never lose sight of the bigger picture again.</p></li>
-                <li><h3 class="fs-600 fw-bold">Advanced built-in reports</h3>
-                <p>Set interval delivery estimates and track progress toward company goals. Our customisable dashboard helps you build out the reports you need to keep key stakeholders informed.</p></li>
-                <li><h3 class="fs-600 fw-bold">Everything you need in one place</h3>
-                <p>Stop jumping from one service to another to communicate, store files, track tasks and share documents. Manage offers an all-in-one team productivity solution.</p></li>
+              <ul class="numbered-list | flow" role="list">
+                <li>
+                  <div class="flow" style="--flow-spacer: 1em"><h3 class="fs-600 fw-bold">Track company-wide progress</h3>
+                <p data-width="wide">See how your day-to-day tasks fit into the water vision. Go from tracking progress at the milestone level all the way done to the smallest of details. Never lose sight of the bigger picture again.</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="flow" style="--flow-spacer: 1em"><h3 class="fs-600 fw-bold">Advanced built-in reports</h3>
+                <p data-width="wide">Set interval delivery estimates and track progress toward company goals. Our customisable dashboard helps you build out the reports you need to keep key stakeholders informed.</p>
+              </div>
+            </li>
+                <li>
+                  <div class="flow" style="--flow-spacer: 1em">
+                    <h3 class="fs-600 fw-bold">Everything you need in one place</h3>
+                <p data-width="wide">Stop jumping from one service to another to communicate, store files, track tasks and share documents. Manage offers an all-in-one team productivity solution.</p>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -68,13 +84,13 @@
         <button class="button">Get Started</button>
       </section>
 
-      <section class="cta | padding-block-700 bg-accent-400 text-neutral-100">
+      <section class="cta | padding-block-900 bg-accent-400 text-neutral-100">
         <div class="container">
-          <div class="even-columns">
+          <div class="even-columns vertical-align-center">
             <div>
-              <p class="fs-secondary-heading fw-bold">Simply how your team works today.</p>
+              <p class="fs-primary-heading fw-bold">Simplify how your team works today.</p>
             </div>
-            <div>
+            <div class="justify-self-end-md">
               <button class="button" data-type="inverted">Get Started</button>
             </div>
           </div>
@@ -82,7 +98,7 @@
       </section>
     </main>
 
-    <footer class="bg-neutral-900 text-neutral-100 ">
+    <footer class="padding-block-700 bg-neutral-900 text-neutral-100 ">
       <div class="container">
         <div class="even-columns">
           <div>
@@ -97,7 +113,7 @@
           </div>
           <div>
             <nav class="footer-nav">
-              <ul aria-label="footer" role="list">
+              <ul class="flow" style="--flow-spacer: 1em" aria-label="footer" role="list">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Pricing</a></li>
                 <li><a href="#">Products</a></li>
