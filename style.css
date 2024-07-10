@@ -343,13 +343,19 @@ p[data-width="wide"] {
   align-items: center;
 }
 
-.justify-self-end {
+.justify-self-end-md {
   justify-self: end;
 }
 
-@media (min-width: 50em){
-  justify-self-end-md {
-    justify-self: end;
+@media (max-width: 50em) {
+  .cta .even-columns {
+    flex-direction: column;
+  }
+  .cta .button {
+    margin-top: 20px; /* add some space between the text and button */
+  }
+  .justify-self-end-md {
+    justify-self: center;
   }
 }
 
