@@ -348,10 +348,7 @@ p[data-width="wide"] {
 }
 
 @media (max-width: 50em) {
-  .cta .even-columns {
-    flex-direction: column;
-  }
-  .cta .button {
+   .cta .button {
     margin-top: 20px; /* add some space between the text and button */
   }
   .justify-self-end-md {
