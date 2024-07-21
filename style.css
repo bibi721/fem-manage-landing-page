@@ -304,7 +304,7 @@ p[data-width="wide"] {
 }
 
 .social-logo {
-  width: 9rem;
+  width: var(--size-1000);
   aspect-ratio: 1/.25;
   padding-left: var(--size-300);
    
