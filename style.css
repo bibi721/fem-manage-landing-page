@@ -41,6 +41,7 @@
   --size-700: 3rem;
   --size-800: 4rem;
   --size-900: 5rem;
+  --size-1000: 8rem;
 
 }
   @media (min-width: 50rem){
@@ -287,7 +288,30 @@ p[data-width="wide"] {
 }
 
 .social-icon {
-  width: var(--size-500);
+  width: var(--size-600);
+  aspect-ratio: 1/8;
+  fill: var(--clr-neutral-100);
+}
+
+.social-list a:is(:hover, :focus) .social-icon {
+  fill: var(--clr-accent-400);
+}
+ 
+@media (min-width: 50em) {
+  .social-icon {
+    width: var(--size-500);
+}
+}
+
+.social-logo {
+  width: 9rem;
+  aspect-ratio: 1/.25;
+  padding-left: var(--size-300);
+   
+}
+
+.footer-manage a:is(:hover, :focus) .social-logo {
+  fill: var(--clr-accent-400);
 }
 
 /* cta */
