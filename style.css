@@ -282,6 +282,7 @@ p[data-width="wide"] {
 .carousel-wrapper {
   overflow: hidden;
   margin-bottom: var(--size-700);
+  padding-top: var(--size-700);
 }
 
 .carousel-track {
@@ -314,15 +315,19 @@ p[data-width="wide"] {
   border-radius: var(--size-100);
   max-width: 540px;
   margin-inline: auto;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 .testimonial-avatar {
   width: var(--size-800);
+  height: var(--size-800);
+  border-radius: 50%;
   position: absolute;
-  inset: 0 auto auto auto;
-  transform: translateX(-50%);
   left: 50%;
-  top: calc(var(--size-800) / -2);
+  top: 0;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  border: 3px solid var(--clr-neutral-100);
 }
 
 .testimonial-content {
