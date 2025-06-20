@@ -163,30 +163,44 @@ p[data-width="wide"] {
   color: var(--clr-neutral-100);
   background-color: var(--clr-accent-400);
   box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
 }
 
 .button[data-type="inverted"] {
   background-color: var(--clr-neutral-100);
   color: var(--clr-accent-400);
 }
+
 .button:hover,
 .button:focus-within {
   background-color: var(--clr-accent-300);
+  transform: translateY(-2px);
+  box-shadow: 0 1.5em 1.5em -1em var(--clr-accent-500);
 }
 
 .button[data-type="inverted"]:hover,
 .button[data-type="inverted"]:focus-visible {
   background-color: var(--clr-neutral-100);
   color: var(--clr-accent-300);
+  transform: translateY(-2px);
 }
 
 .button[data-shadow="none"]{
   box-shadow: none;
 }
+
+.button[data-shadow="none"]:hover {
+  box-shadow: none;
+}
+
 /* navigation */
 
 .primary-header {
   padding-top: var(--size-700);
+  transition: all 0.3s ease;
 }
 
 .nav-wrapper {
@@ -212,11 +226,29 @@ p[data-width="wide"] {
 .nav-list a{
   text-decoration: none;
   color: var(--clr-primary-400);
+  transition: color 0.3s ease;
+  position: relative;
 }
 
 .nav-list a:hover,
 .nav-list a:focus {
   color: var(--clr-accent-400);
+}
+
+.nav-list a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--clr-accent-400);
+  transition: width 0.3s ease;
+}
+
+.nav-list a:hover::after,
+.nav-list a:focus::after {
+  width: 100%;
 }
 
 @media (max-width: 50em) {
@@ -229,8 +261,20 @@ p[data-width="wide"] {
     margin-left: auto;
     background: var(--clr-neutral-100);
     border-radius: var(--size-100);
-    box-shadow: 0 0 0.75em rgb(0, 0, 0, 0.05);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
     z-index: 9999;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .primary-header[data-overlay]::before {
@@ -239,6 +283,12 @@ p[data-width="wide"] {
     inset: 0;
     background-image: linear-gradient(rgb(0 0 0 / 0), rgb(0 0 0 / 0.8));
     z-index: 100;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   .nav-list {
@@ -264,6 +314,11 @@ p[data-width="wide"] {
     padding: 0.5em;
     width: 1.65rem;
     aspect-ratio: 1;
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-nav-toggle:hover {
+    transform: scale(1.1);
   }
   
   .mobile-nav-toggle .icon-close {
@@ -324,7 +379,13 @@ p[data-width="wide"] {
   border-radius: var(--size-100);
   max-width: 540px;
   margin-inline: auto;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
 }
 
 .testimonial-avatar {
@@ -370,12 +431,13 @@ p[data-width="wide"] {
   border: 1px solid var(--clr-accent-400);
   background: transparent;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .carousel-indicator:hover,
 .carousel-indicator.active {
   background-color: var(--clr-accent-400);
+  transform: scale(1.2);
 }
 
 @media (min-width: 50em) {
@@ -399,55 +461,70 @@ p[data-width="wide"] {
   "logo-social";
 }
 
-
 .primary-footer-logo-social  {
   grid-area: logo-social;
-
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   gap: var(--size-700);
 }
+
 .primary-footer-nav {
   grid-area: nav;
-  
 }
+
 .primary-footer-form  {
   grid-area: form;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
- 
 }
 
 .primary-footer-form  p {
   margin-inline: auto;
+  margin-top: var(--size-700);
+  opacity: 0.7;
 }
 
 .primary-footer form{
   display: flex;
   gap: var(--size-200);
+  align-items: stretch;
 }
-/**
-  //This is another way of styling inputs for email and texts.
 
-input:where([type="text"], [type="email]){
-  border-radius: 100vw;
-  border: 0;                                
-  text-align: center;
-  padding: var(--size-300) var(--size-400);
-**/
 .primary-footer-form input {
+  flex: 1;
   border-radius: 100vw;
   border: 0;
-  text-align: center;
-  padding: var(--size-300) var(--size-400);
+  padding: var(--size-300) var(--size-500);
+  font-size: var(--fs-400);
+  background: var(--clr-neutral-100);
+  color: var(--clr-primary-400);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.primary-footer-form input:focus {
+  box-shadow: 0 0 0 3px var(--clr-accent-400);
+}
+
+.primary-footer-form input::placeholder {
+  color: var(--clr-primary-400);
+  opacity: 0.6;
+}
+
+.primary-footer-form .button {
+  padding: var(--size-300) var(--size-600);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  white-space: nowrap;
+  min-width: auto;
 }
 
 @media (min-width: 50em){
   .primary-footer-wrapper {
     grid-template-areas: "logo-social nav form";
+    align-items: start;
   }
   
   .primary-footer-logo-social {
@@ -456,13 +533,21 @@ input:where([type="text"], [type="email]){
     justify-content: space-between;
     gap: var(--size-700);
   }
+
+  .primary-footer-form {
+    align-items: flex-end;
   }
+
+  .primary-footer-form p {
+    margin-inline: 0;
+    text-align: right;
+  }
+}
   
 @media (max-width: 50em) {
   .primary-footer .primary-footer-wrapper > * {
     margin-inline: auto;
   }
-
 }
  
 /* footer navigation */
@@ -475,6 +560,7 @@ input:where([type="text"], [type="email]){
 .footer-nav a {
   color: var(--clr-neutral-100);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .footer-nav a:is(:hover, :focus) {
@@ -487,26 +573,26 @@ input:where([type="text"], [type="email]){
   gap: var(--size-600);
 }
 
-
 .social-icon {
   width: var(--size-500);
   aspect-ratio: 1;
   fill: var(--clr-neutral-100);
+  transition: fill 0.3s ease, transform 0.3s ease;
 }
 
 .social-list a:is(:hover, :focus) .social-icon {
   fill: var(--clr-accent-400);
+  transform: scale(1.2);
 }
  
 @media (min-width: 50em) {
-  
   .social-list {
     display: flex;
     gap: var(--size-300);
   }
   .social-icon {
     width: var(--size-500);
-}
+  }
 }
 
 /* cta */
@@ -522,6 +608,7 @@ input:where([type="text"], [type="email]){
     text-align: left;
   }
 }
+
 .cta::before {
   content: '';
   position: absolute;
@@ -529,7 +616,6 @@ input:where([type="text"], [type="email]){
   inset: 0;
   background-image: url("images/bg-tablet-pattern.svg"),
   url("images/bg-tablet-pattern.svg");
-
   background-position: -15rem -5rem, 80rem -42rem;
   background-repeat: no-repeat;
   opacity: 0.1;
@@ -552,8 +638,6 @@ input:where([type="text"], [type="email]){
   column-gap: var(--size-300);
   grid-template-columns: min-content 1fr;
 }
- 
-
 
 .numbered-items__title {
   grid-row: 1/2;
@@ -648,7 +732,7 @@ input:where([type="text"], [type="email]){
 
 @media (max-width: 50em) {
    .cta .button {
-    margin-top: 20px; /* add some space between the text and button */
+    margin-top: 20px;
   }
   .justify-self-end-md {
     justify-self: center;
