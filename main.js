@@ -34,7 +34,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Carousel functionality
+// Carousel functionality - Mobile only
 const carouselTrack = document.getElementById('carousel-track');
 const carouselIndicators = document.querySelectorAll('.carousel-indicator');
 const slides = document.querySelectorAll('.carousel-slide');
@@ -43,8 +43,15 @@ let currentSlide = 0;
 const totalSlides = slides.length;
 let isAutoPlaying = true;
 
-// Function to update carousel position
+// Function to check if we're on mobile
+function isMobile() {
+    return window.innerWidth < 800; // 50em = 800px
+}
+
+// Function to update carousel position (mobile only)
 function updateCarousel() {
+    if (!isMobile()) return; // Don't run carousel on desktop
+    
     const slideWidth = slides[0].offsetWidth;
     const gap = 24; // 1.5rem gap converted to pixels
     const offset = currentSlide * (slideWidth + gap);
@@ -57,19 +64,19 @@ function updateCarousel() {
     });
 }
 
-// Add click event listeners to indicators
+// Add click event listeners to indicators (mobile only)
 carouselIndicators.forEach((indicator, index) => {
     indicator.addEventListener('click', () => {
+        if (!isMobile()) return;
         currentSlide = index;
         updateCarousel();
-        // Reset auto-advance timer when user interacts
         resetAutoAdvance();
     });
 });
 
-// Auto-advance carousel every 5 seconds
+// Auto-advance carousel every 5 seconds (mobile only)
 function autoAdvance() {
-    if (isAutoPlaying) {
+    if (isAutoPlaying && isMobile()) {
         currentSlide = (currentSlide + 1) % totalSlides;
         updateCarousel();
     }
@@ -83,21 +90,37 @@ function resetAutoAdvance() {
     autoAdvanceInterval = setInterval(autoAdvance, 5000);
 }
 
-// Pause auto-advance when hovering over carousel
+// Pause auto-advance when hovering over carousel (mobile only)
 const carousel = document.querySelector('.carousel');
 if (carousel) {
     carousel.addEventListener('mouseenter', () => {
-        isAutoPlaying = false;
+        if (isMobile()) {
+            isAutoPlaying = false;
+        }
     });
     
     carousel.addEventListener('mouseleave', () => {
-        isAutoPlaying = true;
-        resetAutoAdvance();
+        if (isMobile()) {
+            isAutoPlaying = true;
+            resetAutoAdvance();
+        }
     });
 }
 
-// Handle window resize to recalculate positions
-window.addEventListener('resize', updateCarousel);
+// Handle window resize to recalculate positions and reset carousel behavior
+window.addEventListener('resize', () => {
+    if (isMobile()) {
+        updateCarousel();
+    } else {
+        // Reset transform on desktop
+        carouselTrack.style.transform = 'none';
+        // Reset indicators
+        carouselIndicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === 0);
+        });
+        currentSlide = 0;
+    }
+});
 
 // Initialize carousel
 updateCarousel();

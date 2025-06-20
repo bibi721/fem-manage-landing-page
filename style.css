@@ -359,15 +359,31 @@ p[data-width="wide"] {
   min-width: 100%;
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
 }
 
+/* Desktop testimonials layout - show 3 at once */
 @media (min-width: 50em) {
-  .carousel-slide {
-    min-width: calc(100% / 3);
+  .carousel-wrapper {
+    overflow: visible;
+    padding-top: var(--size-700);
   }
   
   .carousel-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--size-600);
+    transform: none !important;
+    transition: none;
+  }
+  
+  .carousel-slide {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .carousel-slide:nth-child(n+4) {
+    display: none;
   }
 }
 
@@ -440,6 +456,7 @@ p[data-width="wide"] {
   transform: scale(1.2);
 }
 
+/* Hide indicators on desktop since we show all testimonials */
 @media (min-width: 50em) {
   .carousel-indicators {
     display: none;
