@@ -347,12 +347,14 @@ p[data-width="wide"] {
   overflow: hidden;
   margin-bottom: var(--size-700);
   padding-top: var(--size-700);
+  width: 100%;
 }
 
 .carousel-track {
   display: flex;
   transition: transform 0.5s ease-in-out;
   gap: var(--size-600);
+  width: 100%;
 }
 
 .carousel-slide {
@@ -360,6 +362,7 @@ p[data-width="wide"] {
   display: flex;
   justify-content: center;
   flex-shrink: 0;
+  padding: 0 var(--size-400);
 }
 
 /* Desktop testimonials layout - show 3 at once */
@@ -380,6 +383,7 @@ p[data-width="wide"] {
   .carousel-slide {
     min-width: auto;
     width: 100%;
+    padding: 0;
   }
   
   .carousel-slide:nth-child(n+4) {
@@ -394,9 +398,18 @@ p[data-width="wide"] {
   padding: var(--size-700) var(--size-600) var(--size-600);
   border-radius: var(--size-100);
   max-width: 540px;
+  width: 100%;
   margin-inline: auto;
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 50em) {
+  .testimonial {
+    max-width: 90%;
+    margin: 0 auto;
+    min-height: auto;
+  }
 }
 
 .testimonial:hover {
@@ -431,6 +444,16 @@ p[data-width="wide"] {
   color: var(--clr-primary-400);
   opacity: 0.7;
   max-width: none;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+@media (max-width: 50em) {
+  .testimonial-text {
+    font-size: var(--fs-300);
+    line-height: 1.6;
+    padding: 0 var(--size-200);
+  }
 }
 
 .carousel-indicators {

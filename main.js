@@ -53,8 +53,7 @@ function updateCarousel() {
     if (!isMobile()) return; // Don't run carousel on desktop
     
     const slideWidth = slides[0].offsetWidth;
-    const gap = 24; // 1.5rem gap converted to pixels
-    const offset = currentSlide * (slideWidth + gap);
+    const offset = currentSlide * slideWidth;
     
     carouselTrack.style.transform = `translateX(-${offset}px)`;
     
