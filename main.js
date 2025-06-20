@@ -3,11 +3,35 @@ const navToggle = document.querySelector(".mobile-nav-toggle");
 const primaryNav = document.querySelector(".primary-navigation");
 
 navToggle.addEventListener('click', () => {
-    primaryNav.hasAttribute("data-visible")
-    ? navToggle.setAttribute("aria-expanded", false)
-    : navToggle.setAttribute("aria-expanded", true);
-    primaryNav.toggleAttribute("data-visible");
-    primaryHeader.toggleAttribute('data-overlay');
+    const isVisible = primaryNav.hasAttribute("data-visible");
+    
+    if (isVisible) {
+        navToggle.setAttribute("aria-expanded", false);
+        primaryNav.removeAttribute("data-visible");
+        primaryHeader.removeAttribute('data-overlay');
+    } else {
+        navToggle.setAttribute("aria-expanded", true);
+        primaryNav.setAttribute("data-visible", "");
+        primaryHeader.setAttribute('data-overlay', "");
+    }
+});
+
+// Close navigation when clicking on overlay
+primaryHeader.addEventListener('click', (e) => {
+    if (primaryHeader.hasAttribute('data-overlay') && !primaryNav.contains(e.target) && !navToggle.contains(e.target)) {
+        navToggle.setAttribute("aria-expanded", false);
+        primaryNav.removeAttribute("data-visible");
+        primaryHeader.removeAttribute('data-overlay');
+    }
+});
+
+// Close navigation when pressing Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && primaryNav.hasAttribute("data-visible")) {
+        navToggle.setAttribute("aria-expanded", false);
+        primaryNav.removeAttribute("data-visible");
+        primaryHeader.removeAttribute('data-overlay');
+    }
 });
 
 // Carousel functionality
